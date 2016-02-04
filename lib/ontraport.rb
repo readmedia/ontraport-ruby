@@ -24,11 +24,19 @@ module Ontraport
   end
 
   def self.describe object
+    unless object.class.eql? Symbol
+      raise ArgumentError.new "Must provide a symbol for the object name."
+    end
+
     unless metadata = objects_meta['data']&.find{ |k, v| v['name'].downcase.to_sym.eql? object }
-      raise ObjectNotFoundError.new "No object matching #{object.inspect} could be found"
+      raise ObjectNotFoundError.new "No object matching #{object.inspect} could be found."
     end
 
     metadata.second.update 'object_id' => metadata.first
+  end
+
+  def self.clear_describe_cache!
+    @objects_meta_cache = nil
   end
 
   # --- get calls ---
@@ -57,7 +65,7 @@ module Ontraport
         data_param => data
       }
 
-      response =  HTTParty.send *args, **kwargs
+      response = HTTParty.send *args, **kwargs
 
       unless response.code.eql? 200
         raise APIError.new response.body
