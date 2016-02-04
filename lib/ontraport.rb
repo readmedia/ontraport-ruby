@@ -55,6 +55,14 @@ module Ontraport
     objects_call :put, object, endpoint: '/objects', data: params.update(id: id)
   end
 
+  def self.tag_objects object, params
+    objects_call :put, object, endpoint: '/objects/tag', data: params
+  end
+
+  def self.untag_objects object, params
+    objects_call :delete, object, endpoint: '/objects/tag', data: params
+  end
+
   private
     def self.request_with_authentication method, endpoint:, data: nil
       data_param = method.eql?(:get) ? :query : :body
