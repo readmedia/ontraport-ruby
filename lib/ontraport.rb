@@ -39,25 +39,25 @@ module Ontraport
     @objects_meta_cache = nil
   end
 
-  # --- get calls ---
-  def self.objects_meta
-    @objects_meta_cache ||= request_with_authentication :get, endpoint: '/objects/meta'
+  def self.get_object object, id
+    objects_call :get, object, endpoint: '/object', data: { id: id }
   end
 
-  # --- post calls ---
+  def self.get_objects object, params={}
+    objects_call :get, object, endpoint: '/objects', data: params
+  end
+
   def self.save_or_update object, params
-    metadata = describe object
-
-    params.update 'objectID' => metadata['object_id']
-    request_with_authentication :post, endpoint: '/objects/saveorupdate', data: params
+    objects_call :post, object, endpoint: '/objects/saveorupdate', data: params
   end
 
-  # --- put calls ---
-  # --- delete calls ---
+  def self.update_object object, id, params
+    objects_call :put, object, endpoint: '/objects', data: params.update(id: id)
+  end
 
   private
     def self.request_with_authentication method, endpoint:, data: nil
-      data_param = method.in?([:post, :put]) ? :body : :query
+      data_param = method.eql?(:get) ? :query : :body
 
       args = [method, "#{BASE_URL}#{API_VERSION}#{endpoint}"]
       kwargs = {
@@ -72,5 +72,16 @@ module Ontraport
       end
 
       response.parsed_response
+    end
+
+    def self.objects_call method, object, endpoint:, data: {}
+      metadata = describe object
+      data.update 'objectID' => metadata['object_id']
+
+      request_with_authentication method, endpoint: endpoint, data: data
+    end
+
+    def self.objects_meta
+      @objects_meta_cache ||= request_with_authentication :get, endpoint: '/objects/meta'
     end
 end
