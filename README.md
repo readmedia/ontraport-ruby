@@ -58,3 +58,5 @@ License
 The project uses the MIT License. See LICENSE.md for details.
 
 [issues]: https://github.com/hamzatayeb/ontraport-ruby/issues
+[semver]: http://semver.org
+[rubydoc]: http://www.rubydoc.info/github/hamzatayeb/ontraport-ruby/
