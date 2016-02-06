@@ -1,5 +1,6 @@
 # Ruby API client for ONTRAPORT
 
+[![Gem Version](https://badge.fury.io/rb/ontraport.svg)](https://badge.fury.io/rb/ontraport)
 [![GitHub](https://img.shields.io/badge/github-ontraport--ruby-blue.svg)][repo]
 [![Documentation](http://img.shields.io/badge/docs-rdoc.info-blue.svg)][rubydoc]
 [![License](http://img.shields.io/badge/license-MIT-yellowgreen.svg)](#license)
