@@ -1,5 +1,12 @@
 # Ruby API client for ONTRAPORT
 
+[![GitHub](https://img.shields.io/badge/github-ontraport--ruby-blue.svg)](http://github.com/hamzatayeb/ontraport-ruby)
+[![Documentation](http://img.shields.io/badge/docs-rdoc.info-blue.svg)](http://rubydoc.info/github/hamzatayeb/ontraport-ruby/)
+[![License](http://img.shields.io/badge/license-MIT-yellowgreen.svg)](#license)
+<!--
+[![Build Status](https://travis-ci.org/hamzatayeb/ontraport-ruby.svg?branch=master)](https://travis-ci.org/hamzatayeb/ontraport-ruby)
+-->
+
 Disclaimer - This Gem is a work in progress.
 
 <!-- Installation
