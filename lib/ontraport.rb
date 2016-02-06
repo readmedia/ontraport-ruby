@@ -155,7 +155,6 @@ module Ontraport
         raise APIError.new response.body
       end
 
-      #response.parsed_response
       Response.new **response.parsed_response.symbolize_keys
     end
 
