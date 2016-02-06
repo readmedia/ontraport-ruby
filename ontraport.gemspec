@@ -13,10 +13,12 @@ Gem::Specification.new do |s|
   eof
   s.author                = 'Hamza Tayeb'
   s.email                 = 'hamza.tayeb@gmail.com'
+  s.platform              = Gem::Platform::RUBY
   s.extra_rdoc_files      = ['README.md', 'LICENSE.md', 'CHANGELOG.md']
   s.files                 = Dir.glob("{lib}/**/*") + s.extra_rdoc_files
   s.homepage              = 'https://github.com/hamzatayeb/ontraport-ruby'
   s.license               = 'MIT'
-  s.required_ruby_version = '~> 2.3.0'
+  # s.required_ruby_version = '~> 2.3.0' # relaxing this, originally
+  # used safe-navigation operator, but no more
   s.add_dependency 'httparty', ['~> 0.13']
 end

@@ -1,3 +1,7 @@
+# 0.1.1 - February 6, 2016
+
+- Update documentation
+
 # 0.1 - February 6, 2016
 
 - Initial release

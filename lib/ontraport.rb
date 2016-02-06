@@ -125,7 +125,9 @@ module Ontraport
     objects_call :put, object_type, endpoint: '/objects/tag', data: params
   end
 
-  # Remove tags from objects matching the supplied conditions. Interface is identical to +#tag_objects+
+  # Remove tags from objects matching the supplied conditions. Interface is nearly identical to +#tag_objects+
+  #
+  # @note This method expects +remove_list+ as a required parameter.
   #
   # @see tag_objects
   # @see https://api.ontraport.com/doc/#!/objects/removeTag API docs
