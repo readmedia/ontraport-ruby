@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
   s.files                 = Dir.glob("{lib}/**/*") + s.extra_rdoc_files
   s.homepage              = 'https://github.com/hamzatayeb/ontraport-ruby'
   s.license               = 'MIT'
-  s.required_ruby_version = '~> 2.1.8'
+  s.required_ruby_version = '~> 2'
   s.add_dependency 'httparty', ['~> 0.13']
 end

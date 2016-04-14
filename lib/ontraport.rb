@@ -44,7 +44,7 @@ module Ontraport
     @objects_meta_cache = nil
   end
 
-  # @!group Accessor methods
+  # @!group "Objects" Methods
 
   # Retrieve a single object of the specified type.
   # 
@@ -74,8 +74,20 @@ module Ontraport
     objects_call :get, object_type, endpoint: '/objects', data: params
   end
 
-  # @!endgroup
-  # @!group Modifier methods
+  # Create an object with the given data
+  #
+  # @example
+  #   Ontraport.create :contact, { email: 'foo@bar.com', firstname: 'Foo' }
+  #   #=> #<Ontraport::Response @data=...>
+  #
+  # @see https://api.ontraport.com/doc/#!/objects/createObject API docs
+  #
+  # @param object_type [Symbol] the type of object
+  # @param params [Hash] input data
+  # @return [Response]
+  def self.create object_type, params
+    objects_call :post, object_type, endpoint: '/objects', data: params
+  end
 
   # Create an object with the given data, or merge if the unique field matches another row.
   # 
@@ -140,6 +152,19 @@ module Ontraport
   end
 
   # @!endgroup
+  # @!group "Transactions" Methods
+
+  # Get full information about an order
+  #
+  # @see https://api.ontraport.com/doc/#!/transactions/getOrder API docs
+  #
+  # @param order_id [Integer] Id of the order
+  # @return [Response]
+  def self.get_order order_id
+    request_with_authentication :get, endpoint: '/transaction/order', data: { id: order_id }
+  end
+
+  # @!endgroup
 
   private
     def self.request_with_authentication method, endpoint:, data: nil
@@ -154,7 +179,8 @@ module Ontraport
       response = HTTParty.send *args, **kwargs
 
       unless response.code.eql? 200
-        raise APIError.new response.body
+        error = "#{response.code} #{response.msg}"
+        raise APIError.new(response.body.present? ? "#{error} - #{response.body}" : error)
       end
 
       Response.new **response.parsed_response.symbolize_keys
