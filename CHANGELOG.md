@@ -1,5 +1,9 @@
 # Unreleased
 
+# 0.1.21 - September 6, 2017
+
+- require HTTParty in main module (fixes #1)
+
 # 0.1.2 - April 14, 2016
 
 - Add support for Objects `create` method
