@@ -12,6 +12,8 @@ This Gem implements ONTRAPORT's JSON REST API - that's a lot of capitals... but 
 
 So far, all the [objects API][ontra-objects-api] methods are supported. Forthcoming releases will add support for the other APIs.
 
+Full documentation available [here][rubydoc].
+
 Usage
 -----
 
